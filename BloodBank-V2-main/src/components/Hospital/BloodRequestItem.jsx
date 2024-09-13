@@ -28,7 +28,7 @@ function BloodRequestItem({ id, bloodType, hospitalId, quantity }) {
           <img
             className="w-32"
             width="50%"
-            src={"https://static.giotmauvang.org.vn/ihpstatic/LOGO/CTD.png"}
+            src={hospitalData?.avatar}
             alt="CTD"
           />
         </div>

@@ -6,6 +6,7 @@ function RequestHistoryItem({
   hospitalId,
   hospitalAccept,
   quantity,
+  status
 }) {
   let { hospital: hospitalData, isLoading } = useHospital(hospitalAccept);
 
@@ -25,7 +26,7 @@ function RequestHistoryItem({
             <img
               className="w-32"
               width="50%"
-              src={"https://static.giotmauvang.org.vn/ihpstatic/LOGO/CTD.png"}
+              src={hospitalData?.avatar}
               alt="CTD"
             />
           </div>
@@ -45,17 +46,19 @@ function RequestHistoryItem({
                   </div>
                   <div className="text-left text-md text-gray-700">
                     <span className="text-gray-900 f">Nhóm máu: </span>
+                    {bloodType}
                   </div>
                   <div className=" text-left text-md text-gray-700 ">
                     <span className="text-gray-900 f">Số lượng: </span>
+                    {quantity}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4 max-lg:mt-4">
-                  <div className="w-full">Trạng thái</div>
+                <div className="w-full">
+                    Trạng thái: <span className="text-red-600">Đã chấp nhận</span>
+                  </div>
+                  
                 </div>
-              </div>
-              <div className="text-left mt-3 text-gray-600 text-sm md:text-base">
-                <strong></strong> người đã đăng kí hoạt động này
               </div>
             </div>
           </div>
