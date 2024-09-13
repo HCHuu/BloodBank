@@ -21,6 +21,7 @@ import { CookiesProvider } from "react-cookie";
 import Authencicate from "./page/guest/Authenticate";
 import DonateActivity from "./page/hospital/DonateActivity";
 import HospitalProcessingActivities from "./page/hospital/ProcessingActivities";
+import { HubConnectionBuilder } from "@microsoft/signalr";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,17 @@ const queryClient = new QueryClient({
 // };
 
 function App() {
+  // console.log(123);
+  // const connection = new HubConnectionBuilder()
+  //       .withUrl("https://localhost:7028/UpdateFlight", {withCredentials: false})
+  //       .build();
+  // connection.start()
+  //   .then(() => console.log('Ket noi thanh cong'))
+  //   .catch(err => console.error("Loi: ", err));
+  //   connection.on('UpdateFlight', (data) => {
+  //     console.log('Nhận dữ liệu từ backend:', data);
+  //     // Xử lý dữ liệu
+  // });
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />

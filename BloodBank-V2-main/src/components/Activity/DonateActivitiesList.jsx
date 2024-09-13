@@ -18,7 +18,6 @@ function DonateActivitiesList({ type }) {
     setCurActicityData(data);
     setOpen(true);
   }
-
   if (isLoading)
     return (
       <div className=" flex flex-col h-[60vh]  justify-center">
