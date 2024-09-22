@@ -4,7 +4,7 @@ import DonateActivitiesList from "../../components/Activity/DonateActivitiesList
 function ProcessingActivities() {
   return (
     <div>
-      <DonateActivitiesList type={"processing"} />
+      <DonateActivitiesList type={"processing"} status="1" />
     </div>
   );
 }

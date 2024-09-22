@@ -9,7 +9,7 @@ import { useLogout } from "../Auth/useLogout";
 const { Header, Content, Sider } = Layout;
 
 function PageLayout() {
-  const { roleId, fullName } = useSelector((store) => store.user); // Lấy fullName từ Redux store
+  const { roleId, fullName, expiresIn } = useSelector((store) => store.user); // Lấy fullName từ Redux store
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const { logout } = useLogout();

@@ -19,7 +19,7 @@ function DonateActivities() {
         Thêm hoạt động
       </Button>
 
-      <DonateActivitiesList />
+      <DonateActivitiesList status={0}/>
       <CreateActivityModal open={open} onClose={() => setOpen(false)} />
     </div>
   );

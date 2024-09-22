@@ -5,13 +5,13 @@ import DonateAcitivitiesItem from "./DonateAcitivitiesItem";
 import { useState } from "react";
 import UpdateDonateActivityDrawer from "./UpdateDonateActivityDrawer";
 
-function DonateActivitiesList({ type }) {
+function DonateActivitiesList({ type , status}) {
   const { userId } = useSelector((store) => store.user);
   const [open, setOpen] = useState(false);
   const [curActivityData, setCurActicityData] = useState({});
   const { hospitalDonateActivities, isLoading } = useGetAcitivitiesByHospitalId(
     userId,
-    0
+    status
   );
 
   function handleOpenDrawer(data) {

@@ -7,7 +7,7 @@ function RequestHistoryItemEmpty({ bloodType, quantity }) {
             <img
               className="w-32"
               width="50%"
-              src={"https://static.giotmauvang.org.vn/ihpstatic/LOGO/CTD.png"}
+              src={"https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg"}
               alt="CTD"
             />
           </div>
@@ -37,7 +37,7 @@ function RequestHistoryItemEmpty({ bloodType, quantity }) {
                 </div>
                 <div className="flex flex-col gap-4 max-lg:mt-4">
                   <div className="w-full">
-                    Trạng thái: <span className="text-red-600">đang chờ</span>
+                    Trạng thái: <span className="text-red-600">Đang chờ</span>
                   </div>
                 </div>
               </div>
