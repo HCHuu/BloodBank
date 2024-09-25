@@ -102,6 +102,7 @@ function DonorsTable({ type }) {
       />
       <ApproveDonorModal
         {...formData}
+        id={id}
         open={open}
         onClose={() => setOpen(false)}
       />

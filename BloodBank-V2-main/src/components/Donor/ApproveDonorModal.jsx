@@ -4,9 +4,13 @@ import { createPortal } from "react-dom";
 
 import { useSelector } from "react-redux";
 import { useApproveDonor } from "./useApproveDonor";
+import { toast } from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
+
 
 const { Option } = Select;
-function ApproveDonorModal({ open, onClose, donorId, sessionId }) {
+function ApproveDonorModal({ open, onClose, donorId, sessionId, id }) {
+  const queryClient = useQueryClient();
   const { userId, fullName } = useSelector((store) => store.user);
   const { approveDonor, isPending } = useApproveDonor(onClose);
 
@@ -18,7 +22,13 @@ function ApproveDonorModal({ open, onClose, donorId, sessionId }) {
       sessionId,
       hospitalId: userId,
       hospitalName: fullName,
-    });
+    },{ onSuccess: (result, payload) => {
+      toast.success(`Đã chấp nhận yêu cầu`);
+      queryClient.invalidateQueries({
+        queryKey: [`donors ${id}`],
+       });
+      onClose();
+    }});
     form.resetFields();
   };
   return createPortal(

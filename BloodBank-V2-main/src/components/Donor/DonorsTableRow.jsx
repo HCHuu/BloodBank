@@ -3,7 +3,7 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import { useGetDonorInfoById } from "./useGetDonorInfoById";
 import { useRejectDonor } from "./useRejectDonor";
 
-const DonorsTableRow = ({ props, type, onOpen }) => {
+const DonorsTableRow = ({ props, type, onOpen, onDonorAccepted }) => {
   const donorId = props?.children[0]?.props?.record?.donorId;
   const sessionId = props?.children[0]?.props?.record?.id;
   const { donor, isLoading } = useGetDonorInfoById(donorId);
@@ -16,15 +16,9 @@ const DonorsTableRow = ({ props, type, onOpen }) => {
   if (isLoading)
     return (
       <tr>
-        <td>
-          <Skeleton.Input active />
-        </td>
-        <td>
-          <Skeleton.Input active />
-        </td>
-        <td>
-          <Skeleton.Input active />
-        </td>
+        <td><Skeleton.Input active /></td>
+        <td><Skeleton.Input active /></td>
+        <td><Skeleton.Input active /></td>
         {type === "processing" ? (
           <td>
             <div className="flex gap-4 flex-wrap">
@@ -42,7 +36,7 @@ const DonorsTableRow = ({ props, type, onOpen }) => {
                 type="primary"
                 icon={<FaCheck />}
               >
-                <p className="md:inline hidden ">Chấp nhận</p>
+                <p className="md:inline hidden">Chấp nhận</p>
               </Button>
             </div>
           </td>
@@ -70,11 +64,14 @@ const DonorsTableRow = ({ props, type, onOpen }) => {
             </Button>
             <Button
               disabled={isPending}
-              onClick={() => onOpen({ donorId, sessionId })}
+              onClick={() => {
+                onOpen({ donorId, sessionId });
+                onDonorAccepted(donorId);
+              }}
               type="primary"
               icon={<FaCheck />}
             >
-              <p className="md:inline hidden ">Chấp nhận</p>
+              <p className="md:inline hidden">Chấp nhận</p>
             </Button>
           </div>
         </td>

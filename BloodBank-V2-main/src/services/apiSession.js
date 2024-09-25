@@ -54,7 +54,7 @@ export async function approveDonor({
   hospitalName,
 }) {
   await new Promise((res) => setTimeout(res, 1000));
-  await axios.put(
+  const bet1 = await axios.put(
     `${BASE_URL}/api/sessiondonors/${sessionId}`,
     {
       status: 4,
@@ -62,17 +62,18 @@ export async function approveDonor({
     config()
   );
 
-  await axios.post(
+  const bet2 = await axios.post(
     `${BASE_URL}/api/bloods`,
     { hospitalId, bloodType, quantity },
     config()
   );
 
-  await axios.post(
+  const bet3 = await axios.post(
     `${BASE_URL}/api/histories`,
     { donorId, quantity, hospitalName, hospitalId },
     config()
   );
+  await Promise.all([bet1, bet2, bet3])
 }
 
 export async function rejectDonor(sessionId) {

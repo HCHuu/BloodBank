@@ -6,10 +6,6 @@ export function useApproveDonor(onClose) {
   const { mutate: approveDonor, isPending } = useMutation({
     mutationFn: (data) => approveDonorAPI(data),
 
-    onSuccess: (result, payload) => {
-      toast.success(`Đã chấp nhận yêu cầu`);
-      onClose();
-    },
     onError: (err) => {
       toast.error("Chấp nhận không thành công");
     },
