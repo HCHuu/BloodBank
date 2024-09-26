@@ -19,7 +19,6 @@ export async function getBloodRequests({ status = 0, page = 1 }) {
 }
 
 export async function getBloodRequestHistory({ hospitalId }) {
-  await new Promise((res) => setTimeout(res, 2000));
   const { data } = await axios.get(
     `${BASE_URL}/api/requestbloods/hospitals/${hospitalId}?page=${1}&pageSize=${1000}`,
     config()
@@ -29,7 +28,6 @@ export async function getBloodRequestHistory({ hospitalId }) {
 }
 
 export async function createRequestBlood(data) {
-  await new Promise((res) => setTimeout(res, 2000));
   await axios.post(`${BASE_URL}/api/requestbloods`, data, config());
 }
 
