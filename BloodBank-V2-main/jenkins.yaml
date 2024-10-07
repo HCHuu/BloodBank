@@ -1,0 +1,54 @@
+//pull config repo ok
+// update tag in config repo ok
+// not yet commit and push
+def appSourceRepo = 'https://github.com/ndhuy23/blood_bank_api'
+def appSourceBranch = 'main'
+
+# def appConfigRepo = 'https://github.com/rockman88v/app-helmchart.git'
+# def appConfigBranch = 'master'
+# def helmRepo = "app-helmchart"
+# def helmChart = "app-demo"
+# def helmValueFile = "app-demo/app-demo-value.yaml"
+
+def dockerhubAccount = 'dockerhub-token-blood-bank-api'
+def githubAccount = 'github-blood-bank-api'
+
+dockerBuildCommand = './'
+def version = "v1.${BUILD_NUMBER}"
+
+pipeline {
+    agent any    
+   
+    environment {
+        DOCKER_REGISTRY = 'https://hub.docker.com/'
+        DOCKER_IMAGE_NAME = "ndhuy23/blood_bank"
+        DOCKER_IMAGE = "hub.docker.com/${DOCKER_IMAGE_NAME}"
+    }
+
+    stages {        
+        stage('Checkout project') {
+          steps {
+            git branch: appSourceBranch,
+                credentialsId: githubAccount,
+                url: appSourceRepo
+          }
+        }
+        stage('Build And Push Docker Image') {
+            steps {
+                script {
+                    sh "git reset --hard"
+                    sh "git clean -f"                    
+					app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
+                    docker.withRegistry( DOCKER_REGISTRY, dockerhubAccount ) {
+                       app.push(version)
+                    }
+
+                    sh "docker rmi ${DOCKER_IMAGE_NAME} -f"
+                    sh "docker rmi ${DOCKER_IMAGE}:${version} -f"
+                }
+            }
+        }
+
+        
+    }
+}

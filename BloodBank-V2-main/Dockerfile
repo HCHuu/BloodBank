@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Bước 6: Biên dịch ứng dụng
-RUN npm run build  # Tạo thư mục dist
+RUN npm run build 
 
 # Bước 7: Tạo image cho runtime
 FROM node:20 AS runtime
@@ -31,4 +31,4 @@ RUN npm install --only=production
 
 # Bước 11: Mở cổng và chạy ứng dụng
 EXPOSE 3000
-CMD ["node", "dist/index.js"]  # Thay đổi nếu file chính khác
+CMD ["node", "dist/index.js"]
