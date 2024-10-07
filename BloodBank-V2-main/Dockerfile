@@ -1,34 +1,29 @@
-# Bước 1: Chọn image cơ sở cho quá trình build
+# Bước 1: Sử dụng image Node.js làm môi trường xây dựng
 FROM node:20 AS build
 
-# Bước 2: Thiết lập thư mục làm việc
-WORKDIR /usr/src/app
+# Thiết lập thư mục làm việc
+WORKDIR /app
 
-# Bước 3: Sao chép package.json và package-lock.json
+# Sao chép package.json và package-lock.json (nếu có)
 COPY package*.json ./
 
-# Bước 4: Cài đặt các phụ thuộc
+# Cài đặt các phụ thuộc
 RUN npm install
 
-# Bước 5: Sao chép toàn bộ mã nguồn vào container
+# Sao chép toàn bộ mã nguồn vào container
 COPY . .
 
-# Bước 6: Biên dịch ứng dụng
-RUN npm run build 
+# Xây dựng ứng dụng
+RUN npm run build
 
-# Bước 7: Tạo image cho runtime
-FROM node:20 AS runtime
-WORKDIR /usr/src/app
+# Bước 2: Sử dụng một image nhẹ hơn để chạy ứng dụng
+FROM nginx:alpine
 
-# Bước 8: Sao chép thư mục dist từ giai đoạn build
-COPY --from=build /usr/src/app/dist ./dist
+# Sao chép các file đã xây dựng từ bước trước vào thư mục của Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Bước 9: Sao chép package.json và package-lock.json để cài đặt phụ thuộc cần thiết
-COPY --from=build /usr/src/app/package*.json ./
+# Expose port 80
+EXPOSE 80
 
-# Bước 10: Cài đặt các phụ thuộc cần thiết cho môi trường production
-RUN npm install --only=production
-
-# Bước 11: Mở cổng và chạy ứng dụng
-EXPOSE 3000
-CMD ["node", "dist/index.js"]
+# Khởi động Nginx
+CMD ["nginx", "-g", "daemon off;"]
