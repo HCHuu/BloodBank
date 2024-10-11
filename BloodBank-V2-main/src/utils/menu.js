@@ -15,6 +15,10 @@ export const hospitalMenu = [
         label: "Đang diễn ra",
         key: `/hospital/activities/processing`,
       },
+      {
+        label: "Chuyển máu",
+        key: `/hospital/activities/transport`,
+      },
     ],
   },
   {

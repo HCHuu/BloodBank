@@ -27,7 +27,7 @@ function Home() {
       ></Result>
     );
 
-  if (bloods.length === 0)
+  if (bloods?.length === 0)
     return (
       <div className=" flex flex-col h-[60vh]  justify-center">
         <Empty description={"Không có dữ liệu"} />
@@ -37,7 +37,7 @@ function Home() {
   return (
     <div className="bg-gray-200 rounded-lg  p-8 ">
       <div className="grid gap-4 lg:gap-8 md:grid-cols-3 ">
-        {bloods.map((item, index) => {
+        {bloods?.map((item, index) => {
           return (
             <div
               key={item.bloodType}

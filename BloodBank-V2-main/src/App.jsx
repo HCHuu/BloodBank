@@ -22,6 +22,7 @@ import Authencicate from "./page/guest/Authenticate";
 import DonateActivity from "./page/hospital/DonateActivity";
 import HospitalProcessingActivities from "./page/hospital/ProcessingActivities";
 import { HubConnectionBuilder } from "@microsoft/signalr";
+import TransportBloodPage from "./page/hospital/TransportBloodPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -93,6 +94,7 @@ function App() {
                   path="processing/:id"
                   element={<HospitalProcessingActivity />}
                 />
+                <Route path="transport" element={<TransportBloodPage />} />
               </Route>
 
               <Route path="blood">
