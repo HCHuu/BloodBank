@@ -20,7 +20,7 @@ function LoginForm() {
     });
     login({
       ...values,
-      role: Number(values.role),
+      // role: Number(values.role),
     });
     setFormValues({
       userName: "",
