@@ -29,6 +29,7 @@ export function useLogin() {
 
       if (payload.role === 0) navigate("/user/home");
       if (payload.role === 1) navigate("/hospital/home");
+      if (payload.role === 3) navigate("/hospital/home");
       toast.success(`Chào mừng ${result.data.fullName} `);
     },
 
