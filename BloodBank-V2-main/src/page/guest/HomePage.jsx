@@ -51,15 +51,15 @@ function HomePage() {
               icon: <FaInfo />,
             },
             {
-              key: "/user",
-              label: "Người dùng",
+              key: "/authenticate",
+              label: "Đăng nhập",
               icon: <FaUser />,
             },
-            {
-              key: "/hospital",
-              label: "Bệnh viện",
-              icon: <FaHospital />,
-            },
+            // {
+            //   key: "/hospital",
+            //   label: "Bệnh viện",
+            //   icon: <FaHospital />,
+            // },
           ]}
         />
       </Header>

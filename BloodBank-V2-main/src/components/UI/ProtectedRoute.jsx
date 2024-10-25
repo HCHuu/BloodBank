@@ -8,22 +8,24 @@ function ProtectedRoute({ children, role }) {
 
   // 1. Load the authenticated user
   const { isAuthenticated, roleId } = useSelector((store) => store.user);
-  const accessible =
-    (role === "hospital" && roleId === 1) || (role === "user" && roleId === 0);
+  console.log(isAuthenticated);
+  // const accessible =
+  //   (role === "hospital" && roleId === 1) || (role === "user" && roleId === 0);
 
   // 2. If NO authenticated user redirect to the /login
 
+  //  || !accessible
   useEffect(
     function () {
-      if (!isAuthenticated || !accessible) {
+      if (!isAuthenticated) {
         navigate("/authenticate", { replace: true });
       }
     },
-    [isAuthenticated, accessible, navigate, dispatch]
+    [isAuthenticated, navigate, dispatch]
   );
 
   // 4. If there IS a user, render the app
-  if (isAuthenticated && accessible) return children;
+  if (isAuthenticated) return children;
 }
 
 export default ProtectedRoute;

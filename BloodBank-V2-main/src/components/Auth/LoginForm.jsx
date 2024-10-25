@@ -67,25 +67,6 @@ function LoginForm() {
       </Form.Item>
 
       <Form.Item
-        name="role"
-        className="collection-create-form_last-form-item text-left"
-        wrapperCol={{
-          offset: 4,
-        }}
-        rules={[
-          {
-            required: true,
-            message: "Vui lòng xác định người dùng!",
-          },
-        ]}
-      >
-        <Radio.Group disabled={isPending}>
-          <Radio value="0">Người nguyên góp</Radio>
-          <Radio value="1">Bệnh viện</Radio>
-        </Radio.Group>
-      </Form.Item>
-
-      <Form.Item
         className=" collection-create-form_last-form-item "
         wrapperCol={{
           offset: 15,
