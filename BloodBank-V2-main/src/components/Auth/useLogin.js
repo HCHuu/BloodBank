@@ -28,9 +28,9 @@ export function useLogin() {
       );
       console.log(result?.data.role);
 
-      if (result?.data.role === 0) navigate("/user/home");
-      if (result?.data.role === 1) navigate("/hospital/home");
-      if (result?.data.role === 3) navigate("/hospital/home");
+      if (result?.data.role === "Donor") navigate("/user/home");
+      if (result?.data.role === "Hospital") navigate("/hospital/home");
+      if (result?.data.role === "Admin") navigate("/admin/home");
       toast.success(`Chào mừng ${result.data.fullName} `);
     },
 

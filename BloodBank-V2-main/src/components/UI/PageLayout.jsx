@@ -3,17 +3,26 @@ import React, { useState } from "react";
 import { FaHandHoldingMedical, FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
-import { hospitalMenu, userMenu } from "../../utils/menu";
+import { hospitalMenu, userMenu, adminMenu } from "../../utils/menu";
 import { useLogout } from "../Auth/useLogout";
 
 const { Header, Content, Sider } = Layout;
 
 function PageLayout() {
-  const { roleId, fullName, expiresIn } = useSelector((store) => store.user); // Lấy fullName từ Redux store
+  const { role, fullName, expiresIn } = useSelector((store) => store.user); // Lấy fullName từ Redux store
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const { logout } = useLogout();
-  const menu = roleId === 0 ? userMenu : hospitalMenu;
+  let menu;
+  console.log(role, 123);
+  if (role === "Donor") {
+    menu = userMenu;
+  } else if (role === "Hospital") {
+    menu = hospitalMenu;
+  } else {
+    menu = adminMenu;
+  }
+  console.log(menu);
   const layoutConfig = {
     true: "ml-[80px] transition-ml duration-300 ",
     false: "ml-[200px] transition-ml duration-300 ",

@@ -57,3 +57,23 @@ export const userMenu = [
     ],
   },
 ];
+export const adminMenu = [
+  {
+    label: "Trang chủ",
+    key: "/user/home",
+  },
+  {
+    label: "Quản lý",
+    key: "/user/activity",
+    children: [
+      {
+        label: "Bệnh viện",
+        key: "/management/hospital",
+      },
+      {
+        label: "Người hiến máu",
+        key: "/management/donor",
+      },
+    ],
+  },
+];

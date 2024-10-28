@@ -103,7 +103,36 @@ function App() {
 
               <Route path="histories" element={<RequestHistory />} />
             </Route>
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute role="admin">
+                  <PageLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate replace to="home" />} />
+              <Route path="home" element={<HospitalHome />} />
+              <Route path="activities">
+                <Route path="donate" element={<HospitalDonateActivity />} />
+                <Route path="donate/:id" element={<DonateActivity />} />
+                <Route
+                  path="processing"
+                  element={<HospitalProcessingActivities />}
+                />
+                <Route
+                  path="processing/:id"
+                  element={<HospitalProcessingActivity />}
+                />
+                <Route path="transport" element={<TransportBloodPage />} />
+              </Route>
 
+              <Route path="blood">
+                <Route path="request" element={<BloodRequest />}></Route>
+              </Route>
+
+              <Route path="histories" element={<RequestHistory />} />
+            </Route>
             <Route path="/" element={<HomePage />} />
             <Route path="authenticate" element={<Authencicate />} />
             <Route path="signup" element={<Signup />} />
