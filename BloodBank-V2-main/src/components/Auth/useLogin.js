@@ -3,7 +3,7 @@ import { login as loginAPI } from "../../services/apiAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useCookies } from "react-cookie";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setInfo } from "./userSlice";
 
 export function useLogin() {
@@ -24,11 +24,13 @@ export function useLogin() {
       });
 
       dispatch(
-        setInfo({ ...result.data, isAuthenticated: true, roleId: payload.role })
+        setInfo({ ...result.data, isAuthenticated: true, roleId: result.role })
       );
+      console.log(result?.data.role);
 
-      if (payload.role === 0) navigate("/user/home");
-      if (payload.role === 1) navigate("/hospital/home");
+      if (result?.data.role === "Donor") navigate("/user/home");
+      if (result?.data.role === "Hospital") navigate("/hospital/home");
+      if (result?.data.role === "Admin") navigate("/admin/home");
       toast.success(`Chào mừng ${result.data.fullName} `);
     },
 

@@ -1,18 +1,16 @@
-import { Empty, Spin } from "antd";
+import { Empty, Result, Spin } from "antd";
 import { useGetAcitivitiesByHospitalId } from "./useGetActivitiesByHospitalId";
 import { useSelector } from "react-redux";
 import DonateAcitivitiesItem from "./DonateAcitivitiesItem";
 import { useState } from "react";
 import UpdateDonateActivityDrawer from "./UpdateDonateActivityDrawer";
 
-function DonateActivitiesList({ type , status}) {
+function DonateActivitiesList({ type, status }) {
   const { userId } = useSelector((store) => store.user);
   const [open, setOpen] = useState(false);
   const [curActivityData, setCurActicityData] = useState({});
-  const { hospitalDonateActivities, isLoading } = useGetAcitivitiesByHospitalId(
-    userId,
-    status
-  );
+  const { hospitalDonateActivities, isLoading, error } =
+    useGetAcitivitiesByHospitalId(userId, status);
 
   function handleOpenDrawer(data) {
     setCurActicityData(data);
@@ -27,6 +25,16 @@ function DonateActivitiesList({ type , status}) {
       </div>
     );
 
+  if (error)
+    return (
+      <Result
+        className="mt-8"
+        status="error"
+        title="Tải dữ liệu không thành công"
+        subTitle="Xin vui lòng kiểm tra lại tình trạng Internet của bạn."
+      ></Result>
+    );
+
   if (hospitalDonateActivities?.length === 0)
     return (
       <div className=" flex flex-col h-[60vh]  justify-center">
@@ -37,7 +45,7 @@ function DonateActivitiesList({ type , status}) {
   return (
     <>
       <div className="mt-12 flex flex-wrap gap-4">
-        {hospitalDonateActivities.map((item, index) => {
+        {hospitalDonateActivities?.map((item, index) => {
           return (
             <DonateAcitivitiesItem
               {...item}

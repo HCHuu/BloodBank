@@ -11,8 +11,16 @@ function config() {
 }
 
 export async function getHospitalInfoById(id) {
-  await new Promise((res) => setTimeout(res, 2000));
   const data = await axios.get(`${BASE_URL}/api/hospitals/${id}`, config());
 
   return data?.data.data;
+}
+
+export async function sendBloodToHospital({ requestId, hospitalId, bloodType, bloods }) {
+  console.log({ hospitalId, bloodType, bloods });
+  await axios.put(
+    `${BASE_URL}/api/bloods/export/${requestId}/${hospitalId}`,
+    bloods,
+    config()
+  );
 }

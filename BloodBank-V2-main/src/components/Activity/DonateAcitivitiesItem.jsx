@@ -26,7 +26,7 @@ function DonateAcitivitiesItem({
   const { searchActivities, isPending: isSearching } = useSearchActivities();
   const navigate = useNavigate();
   const { deleteDonateActivity, isPending } = useDeleteDonateActivity();
-
+  console.log(hospitalData);
   if (isLoading)
     return (
       <Skeleton

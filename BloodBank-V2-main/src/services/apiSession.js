@@ -20,7 +20,6 @@ export async function getActivitiesInSessionByUserId(id) {
 }
 
 export async function getDonorsInSessionByActivityId(id, page = 1) {
-  await new Promise((res) => setTimeout(res, 1000));
   const { data } = await axios.get(
     `${BASE_URL}/api/sessiondonors/activities/${id}?Page=${page}&PageSize=1000 `,
     config()
@@ -30,7 +29,6 @@ export async function getDonorsInSessionByActivityId(id, page = 1) {
 }
 
 export async function createActivityInSession(info) {
-  await new Promise((res) => setTimeout(res, 1000));
   const data = await axios.post(
     `${BASE_URL}/api/sessiondonors`,
     info,
@@ -41,7 +39,6 @@ export async function createActivityInSession(info) {
 }
 
 export async function deleteActivityInSesstionById(id) {
-  await new Promise((res) => setTimeout(res, 1000));
   await axios.delete(`${BASE_URL}/api/sessiondonors/${id}`, config());
 }
 
@@ -53,7 +50,6 @@ export async function approveDonor({
   quantity,
   hospitalName,
 }) {
-  await new Promise((res) => setTimeout(res, 1000));
   const bet1 = await axios.put(
     `${BASE_URL}/api/sessiondonors/${sessionId}`,
     {
@@ -73,11 +69,10 @@ export async function approveDonor({
     { donorId, quantity, hospitalName, hospitalId },
     config()
   );
-  await Promise.all([bet1, bet2, bet3])
+  await Promise.all([bet1, bet2, bet3]);
 }
 
 export async function rejectDonor(sessionId) {
-  await new Promise((res) => setTimeout(res, 1000));
   await axios.put(
     `${BASE_URL}/api/sessiondonors/${sessionId}`,
     {

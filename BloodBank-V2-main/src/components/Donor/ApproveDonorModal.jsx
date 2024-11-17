@@ -111,7 +111,7 @@ function ApproveDonorModal({ open, onClose, donorId, sessionId, id }) {
         <InputNumber
           disabled={isPending}
           min={1}
-          max={100}
+          max={800}
           className="w-full"
         />
       </Form.Item>

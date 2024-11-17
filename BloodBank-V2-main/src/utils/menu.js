@@ -15,6 +15,10 @@ export const hospitalMenu = [
         label: "Đang diễn ra",
         key: `/hospital/activities/processing`,
       },
+      {
+        label: "Chuyển máu",
+        key: `/hospital/activities/transport`,
+      },
     ],
   },
   {
@@ -49,6 +53,26 @@ export const userMenu = [
       {
         label: "Lịch sử hiến máu",
         key: "/user/histories",
+      },
+    ],
+  },
+];
+export const adminMenu = [
+  {
+    label: "Trang chủ",
+    key: "/user/home",
+  },
+  {
+    label: "Quản lý",
+    key: "/user/activity",
+    children: [
+      {
+        label: "Bệnh viện",
+        key: "/management/hospital",
+      },
+      {
+        label: "Người hiến máu",
+        key: "/management/donor",
       },
     ],
   },

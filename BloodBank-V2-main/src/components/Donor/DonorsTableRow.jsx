@@ -2,15 +2,18 @@ import { Button, Skeleton } from "antd";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { useGetDonorInfoById } from "./useGetDonorInfoById";
 import { useRejectDonor } from "./useRejectDonor";
-
+import { QueryClient, useMutation } from "@tanstack/react-query";
 const DonorsTableRow = ({ props, type, onOpen, onDonorAccepted }) => {
   const donorId = props?.children[0]?.props?.record?.donorId;
   const sessionId = props?.children[0]?.props?.record?.id;
   const { donor, isLoading } = useGetDonorInfoById(donorId);
   const { rejectDonor, isPending } = useRejectDonor();
-
+  const queryClient = new QueryClient();
   function handleCancel() {
     rejectDonor(sessionId);
+    queryClient.invalidateQueries({
+      queryKey: [`donors ${sessionId}`],
+    });
   }
 
   if (isLoading)
