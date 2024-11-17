@@ -5,6 +5,7 @@ import AvailableBloodModal from "./AvailableBloodModal";
 
 function TransportBloodItem({
   hospitalId,
+  id,
   bloodType,
   quantity,
   hospitalAccept,
@@ -65,6 +66,7 @@ function TransportBloodItem({
       {open && (
         <AvailableBloodModal
           hospitalId={hospitalId}
+          requestId={id}
           requiredQuantity={quantity}
           hospitalAccept={hospitalAccept}
           bloodType={bloodType}

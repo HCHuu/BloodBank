@@ -16,10 +16,10 @@ export async function getHospitalInfoById(id) {
   return data?.data.data;
 }
 
-export async function sendBloodToHospital({ hospitalId, bloodType, bloods }) {
+export async function sendBloodToHospital({ requestId, hospitalId, bloodType, bloods }) {
   console.log({ hospitalId, bloodType, bloods });
-  await axios.post(
-    `${BASE_URL}/api/hospitals/${hospitalId}?bloodType=${bloodType}`,
+  await axios.put(
+    `${BASE_URL}/api/bloods/export/${requestId}/${hospitalId}`,
     bloods,
     config()
   );

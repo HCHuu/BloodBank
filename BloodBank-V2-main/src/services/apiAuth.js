@@ -8,7 +8,7 @@ export async function login(info) {
 }
 
 export async function signup(info) {
-  const data = await axios.post(`${BASE_URL}/api/donors`, info);
+  const data = await axios.post(`${BASE_URL}/api/auth/donor/registry`, {...info, role : "Donor"});
 
   return data;
 }

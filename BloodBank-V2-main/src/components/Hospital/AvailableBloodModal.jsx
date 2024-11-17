@@ -1,5 +1,5 @@
 import { CheckCircleOutlined, WarningOutlined } from "@ant-design/icons";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   Badge,
   Checkbox,
@@ -22,10 +22,12 @@ const { Title, Text } = Typography;
 function AvailableBloodModal({
   open,
   onClose,
+  requestId,
   hospitalId,
   bloodType,
   requiredQuantity,
 }) {
+  const queryClient = useQueryClient();
   const { userId } = useSelector((store) => store.user);
   const [form] = Form.useForm();
   let {
@@ -42,6 +44,9 @@ function AvailableBloodModal({
     mutationFn: (data) => sendBloodToHospital(data),
     onSuccess: () => {
       toast.success("Chuyển máu thành công");
+      queryClient.invalidateQueries({
+        queryKey: [`BloodTransportAccept`]
+      })
       form.resetFields();
       onClose();
     },
@@ -64,6 +69,7 @@ function AvailableBloodModal({
       bloods: values?.selectedItems,
       hospitalId: hospitalId,
       bloodType: bloodType,
+      requestId: requestId,
     });
   };
 

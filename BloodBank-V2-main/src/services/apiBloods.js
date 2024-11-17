@@ -146,7 +146,7 @@ export async function getBloodsByBloodType({ hospitalId, bloodType }) {
   };
 
   const { data } = await axios.get(
-    `${BASE_URL}/api/bloods/hospitals/${hospitalId}?bloodType=${bloodType}`,
+    `${BASE_URL}/api/bloods/hospitals/${hospitalId}?bloodType=${encodeURIComponent(bloodType)}`,
     config()
   );
 

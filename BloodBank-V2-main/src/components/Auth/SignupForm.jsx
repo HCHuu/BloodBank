@@ -137,7 +137,6 @@ function SignupForm() {
             <Form.Item name="prefix" noStyle>
               <Select style={{ width: 70 }}>
                 <Option value="84">+84</Option>
-                <Option value="85">+85</Option>
               </Select>
             </Form.Item>
           }
